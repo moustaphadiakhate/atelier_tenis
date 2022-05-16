@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
 import configs from './config.js';
+import apiRoutes from './routes/index.js';
 import db from './database/index.js';
 
 db.connect();
@@ -31,6 +32,9 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.json({ status: 200, result: `${configs.appName} api server.. nothing to see here` });
 });
+
+// api routes
+app.use('/v0', apiRoutes);
 
 app.use((req, res) => {
   const error = new Error('not found');
