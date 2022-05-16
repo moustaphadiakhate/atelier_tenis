@@ -72,7 +72,7 @@ usage: npm run seed
 ### Name: get_player
 ```
 
-Method : GET
+Method : GET (obtenir les information d'un joueur specifique)
 URL : http://localhost:3000/v0/players/get_player?id=52
 Request : {}
 ```
@@ -80,28 +80,28 @@ Request : {}
 ### Name: get_players
 ```
 
-Method : GET
-URL :http://localhost:3000/v0/players/get_player
+Method : GET (obtenir les joueurs par ordre de leur rang)
+URL :http://localhost:3000/v0/players/get_players
 Request : {}
 ```
 ### Name: get_fav_contry
 ```
 
-Method : GET
+Method : GET (obtenir lae pays favori en termes de ratio)
 URL :http://localhost:3000/v0/players/get_fav_contry
 Request : {}
 ```
 ### Name: get_player_imc_moyen
 ```
 
-Method : GET
+Method : GET (obtenir le IMC moyen des joueurs)
 URL :http://localhost:3000/v0/players/get_player_imc_moyen
 Request : {}
 ```
 ### Name: get_heigth_median
 ```
 
-Method : GET
+Method : GET (obtenir la mediade des tailles)
 URL :http://localhost:3000/v0/players/get_heigth_median
 Request : {}
 ```
