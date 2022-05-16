@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/**/*.js --timeout 10000",
     "seed": "node scripts/databaseSeeder.js",
     "keygen": "node scripts/keygen.js"
   },
@@ -20,9 +20,12 @@
   },
   "homepage": "https://github.com/moustaphadiakhate/atelier_tenis#readme",
   "devDependencies": {
+    "chai": "^4.3.6",
     "eslint": "^8.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "mocha": "^10.0.0",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
