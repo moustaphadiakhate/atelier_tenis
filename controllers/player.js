@@ -95,6 +95,32 @@ export const getFavCountry = (req, res) => {
     });
 };
 
+export const getPlayersIMCMean = (req, res) => {
+  Player.find()
+    .sort({ 'data.rank': 1 })
+    .then((players) => {
+      const imcList = players.map((player) => {
+        const { weight, height } = player.data;
+        return (weight / 1000) / (height / 100) ** 2;
+      });
+
+      const playersIMC = mean(imcList);
+      res.status(200).json({
+        status: 200,
+        data: playersIMC.toFixed(2),
+        message: 'success',
+      });
+    })
+    .catch((err) => {
+      console.err(err);
+      res.status(501).json({
+        status: 501,
+        data: null,
+        message: 'Error',
+      });
+    });
+};
+
 // private functions
 
 /**
