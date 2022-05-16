@@ -1,6 +1,6 @@
-# ATELIER TENIS API (Mustafa Jaxateh)
+# ATELIER TENIS API (Mustafa Jaxateh) My [linkedIn](https://www.linkedin.com/in/mustafa-jaxateh-869214128/) 
 
-[linkedIn](https://www.linkedin.com/in/mustafa-jaxateh-869214128/) 
+clic to see the app deployed on [Heroku]( https://atelier-tenis.herokuapp.com/) 
 ---
 ## Requirements
 
