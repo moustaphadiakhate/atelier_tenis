@@ -1,0 +1,20 @@
+{
+  "name": "atelier_tenis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moustaphadiakhate/atelier_tenis.git"
+  },
+  "author": "Moustapha Diakhate",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moustaphadiakhate/atelier_tenis/issues"
+  },
+  "homepage": "https://github.com/moustaphadiakhate/atelier_tenis#readme"
+}
