@@ -1,6 +1,9 @@
 import Player from '../database/models/player.js';
 import { getMean, getMedian } from '../helpers/statistics.js';
-import { SUCCESS, INTERNAL_SERVER_ERROR, ERROR } from '../common/constant.js';
+import validate from '../common/validation.js';
+import {
+  SUCCESS, INTERNAL_SERVER_ERROR, ERROR, VALIDATE_ERROR,
+} from '../common/constant.js';
 
 export const getPlayers = (req, res) => {
   Player.find()
@@ -14,8 +17,8 @@ export const getPlayers = (req, res) => {
     })
     .catch((err) => {
       console.err(err);
-      res.status(501).json({
-        status: 501,
+      res.status(500).json({
+        status: 500,
         data: null,
         message: INTERNAL_SERVER_ERROR,
       });
@@ -27,26 +30,45 @@ export const getPlayer = (req, res) => {
     id: req.query.id,
   };
 
-  Player.findOne({ id: reqBody.id })
-    .then((player) => {
-      if (player) {
-        res.status(200).json({
-          status: 200,
-          data: player,
-          message: SUCCESS,
-        });
+  validate(Object.keys(reqBody), reqBody)
+    .then(async ({ status, response }) => {
+      if (status) {
+        Player.findOne({ id: reqBody.id })
+          .then((player) => {
+            if (player) {
+              res.status(200).json({
+                status: 200,
+                data: player,
+                message: SUCCESS,
+              });
+            } else {
+              res.status(501).json({
+                status: 501,
+                data: null,
+                message: ERROR,
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+              status: 500,
+              data: null,
+              message: INTERNAL_SERVER_ERROR,
+            });
+          });
       } else {
-        res.status(501).json({
-          status: 501,
-          data: null,
-          message: ERROR,
+        res.status(422).json({
+          status: 422,
+          data: response,
+          message: VALIDATE_ERROR,
         });
       }
     })
     .catch((err) => {
       console.log(err);
-      res.status(501).json({
-        status: 501,
+      res.status(500).json({
+        status: 500,
         data: null,
         message: INTERNAL_SERVER_ERROR,
       });
@@ -89,8 +111,8 @@ export const getFavCountry = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(501).json({
-        status: 501,
+      res.status(500).json({
+        status: 500,
         data: null,
         message: INTERNAL_SERVER_ERROR,
       });
