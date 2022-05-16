@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import configs from '../config.js';
+import configs from '../configs.js';
 
 const payload = { userName: configs.apiClient.userName };
 

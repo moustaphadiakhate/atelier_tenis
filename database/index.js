@@ -1,5 +1,5 @@
 import db from 'mongoose';
-import configs from '../config.js';
+import configs from '../configs.js';
 
 function connect(calback = function () {}) {
   db.connect(configs.DBURL, { useNewUrlParser: true }, (err) => {

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { FORBIDDEN } from '../common/constant.js';
-import configs from '../config.js';
+import configs from '../configs.js';
 
 const checkClient = (req, res, next) => {
   const token = req.headers.token || req.headers.authorization;

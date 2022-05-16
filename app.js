@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
-import configs from './config.js';
+import configs from './configs.js';
 import apiRoutes from './routes/index.js';
 import db from './database/index.js';
 

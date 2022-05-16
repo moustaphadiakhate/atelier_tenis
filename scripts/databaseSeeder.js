@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { createRequire } from 'module';
-import configs from '../config.js';
+import configs from '../configs.js';
 import Player from '../database/models/player.js';
 
 const require = createRequire(import.meta.url);
