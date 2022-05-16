@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 });
 
 // api routes
-app.use('/v0', apiRoutes);
+app.use('/v0', apiRoutes); // we can add checkclient middleware to protect routes
 
 app.use((req, res) => {
   const error = new Error('not found');
