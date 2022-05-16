@@ -1,5 +1,6 @@
 import Player from '../database/models/player.js';
 import { getMean, getMedian } from '../helpers/statistics.js';
+import { SUCCESS, INTERNAL_SERVER_ERROR, ERROR } from '../common/constant.js';
 
 export const getPlayers = (req, res) => {
   Player.find()
@@ -8,7 +9,7 @@ export const getPlayers = (req, res) => {
       res.status(200).json({
         status: 200,
         data: players,
-        message: 'Success',
+        message: SUCCESS,
       });
     })
     .catch((err) => {
@@ -16,7 +17,7 @@ export const getPlayers = (req, res) => {
       res.status(501).json({
         status: 501,
         data: null,
-        message: 'Error',
+        message: INTERNAL_SERVER_ERROR,
       });
     });
 };
@@ -32,13 +33,13 @@ export const getPlayer = (req, res) => {
         res.status(200).json({
           status: 200,
           data: player,
-          message: 'Success',
+          message: SUCCESS,
         });
       } else {
         res.status(501).json({
           status: 501,
           data: null,
-          message: 'Error',
+          message: ERROR,
         });
       }
     })
@@ -47,7 +48,7 @@ export const getPlayer = (req, res) => {
       res.status(501).json({
         status: 501,
         data: null,
-        message: 'Error',
+        message: INTERNAL_SERVER_ERROR,
       });
     });
 };
@@ -76,13 +77,13 @@ export const getFavCountry = (req, res) => {
         res.status(200).json({
           status: 200,
           data: list[0],
-          message: 'Success',
+          message: SUCCESS,
         });
       } else {
         res.status(501).json({
           status: 501,
           data: null,
-          message: 'Error',
+          message: ERROR,
         });
       }
     })
@@ -91,7 +92,7 @@ export const getFavCountry = (req, res) => {
       res.status(501).json({
         status: 501,
         data: null,
-        message: 'Error',
+        message: INTERNAL_SERVER_ERROR,
       });
     });
 };
@@ -109,7 +110,7 @@ export const getPlayersIMCMean = (req, res) => {
       res.status(200).json({
         status: 200,
         data: playersIMC.toFixed(2),
-        message: 'Success',
+        message: SUCCESS,
       });
     })
     .catch((err) => {
@@ -117,7 +118,7 @@ export const getPlayersIMCMean = (req, res) => {
       res.status(501).json({
         status: 501,
         data: null,
-        message: 'Error',
+        message: INTERNAL_SERVER_ERROR,
       });
     });
 };
@@ -131,7 +132,7 @@ export const getPlayersHeighMedian = (req, res) => {
       res.status(200).json({
         status: 200,
         data: playersHeighMedian.toFixed(2),
-        message: 'Success',
+        message: SUCCESS,
       });
     })
     .catch((err) => {
@@ -139,7 +140,7 @@ export const getPlayersHeighMedian = (req, res) => {
       res.status(501).json({
         status: 501,
         data: null,
-        message: 'Error',
+        message: INTERNAL_SERVER_ERROR,
       });
     });
 };
