@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/moustaphadiakhate/atelier_tenis/issues"
   },
-  "homepage": "https://github.com/moustaphadiakhate/atelier_tenis#readme"
+  "homepage": "https://github.com/moustaphadiakhate/atelier_tenis#readme",
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1"
+  }
 }
