@@ -1,4 +1,5 @@
 import Player from '../database/models/player.js';
+import { getMean, getMedian } from '../helpers/statistics.js';
 
 export const getPlayers = (req, res) => {
   Player.find()
@@ -7,7 +8,7 @@ export const getPlayers = (req, res) => {
       res.status(200).json({
         status: 200,
         data: players,
-        message: 'success',
+        message: 'Success',
       });
     })
     .catch((err) => {
@@ -108,7 +109,7 @@ export const getPlayersIMCMean = (req, res) => {
       res.status(200).json({
         status: 200,
         data: playersIMC.toFixed(2),
-        message: 'success',
+        message: 'Success',
       });
     })
     .catch((err) => {
@@ -130,7 +131,7 @@ export const getPlayersHeighMedian = (req, res) => {
       res.status(200).json({
         status: 200,
         data: playersHeighMedian.toFixed(2),
-        message: 'success',
+        message: 'Success',
       });
     })
     .catch((err) => {
@@ -142,37 +143,3 @@ export const getPlayersHeighMedian = (req, res) => {
       });
     });
 };
-// private functions
-
-/**
- * It takes an array of numbers, adds them up, and returns the mean.
- * @param numbers - An array of numbers.
- * @returns The average of the numbers in the array.
- */
-function getMean(numbers) {
-  let total = 0; let
-    i;
-  for (i = 0; i < numbers.length; i += 1) {
-    total += numbers[i];
-  }
-  return total / numbers.length;
-}
-
-/**
- * Sort the array, then return the middle value
- * @param numbers - an array of integers
- * @returns The median of the array.
- */
-function getMedian(numbers) {
-  let median = 0; const
-    numsLen = numbers.length;
-  numbers.sort();
-
-  if (numsLen % 2 === 0) {
-    median = (numbers[numsLen / 2 - 1] + numbers[numsLen / 2]) / 2;
-  } else {
-    median = numbers[(numsLen - 1) / 2];
-  }
-
-  return median;
-}
