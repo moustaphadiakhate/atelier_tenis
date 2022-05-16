@@ -68,7 +68,7 @@ export const getFavCountry = (req, res) => {
         for (const country in countries) {
           list.push({
             code: country,
-            ratio: mean(countries[country]),
+            ratio: getMean(countries[country]),
           });
         }
         list.sort((a, b) => b.ratio - a.ratio);
@@ -104,7 +104,7 @@ export const getPlayersIMCMean = (req, res) => {
         return (weight / 1000) / (height / 100) ** 2;
       });
 
-      const playersIMC = mean(imcList);
+      const playersIMC = getMean(imcList);
       res.status(200).json({
         status: 200,
         data: playersIMC.toFixed(2),
@@ -121,6 +121,27 @@ export const getPlayersIMCMean = (req, res) => {
     });
 };
 
+export const getPlayersHeighMedian = (req, res) => {
+  Player.find()
+    .sort({ 'data.rank': 1 })
+    .then((players) => {
+      const heightList = players.map((player) => player.data.height);
+      const playersHeighMedian = getMedian(heightList);
+      res.status(200).json({
+        status: 200,
+        data: playersHeighMedian.toFixed(2),
+        message: 'success',
+      });
+    })
+    .catch((err) => {
+      console.err(err);
+      res.status(501).json({
+        status: 501,
+        data: null,
+        message: 'Error',
+      });
+    });
+};
 // private functions
 
 /**
@@ -128,11 +149,30 @@ export const getPlayersIMCMean = (req, res) => {
  * @param numbers - An array of numbers.
  * @returns The average of the numbers in the array.
  */
-function mean(numbers) {
+function getMean(numbers) {
   let total = 0; let
     i;
   for (i = 0; i < numbers.length; i += 1) {
     total += numbers[i];
   }
   return total / numbers.length;
+}
+
+/**
+ * Sort the array, then return the middle value
+ * @param numbers - an array of integers
+ * @returns The median of the array.
+ */
+function getMedian(numbers) {
+  let median = 0; const
+    numsLen = numbers.length;
+  numbers.sort();
+
+  if (numsLen % 2 === 0) {
+    median = (numbers[numsLen / 2 - 1] + numbers[numsLen / 2]) / 2;
+  } else {
+    median = numbers[(numsLen - 1) / 2];
+  }
+
+  return median;
 }
