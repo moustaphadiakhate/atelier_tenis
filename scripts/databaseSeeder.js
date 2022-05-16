@@ -6,7 +6,6 @@ import Player from '../database/models/player.js';
 const require = createRequire(import.meta.url);
 const dataset = require('../data/dataset.json');
 
-console.log(dataset.players[0]);
 mongoose.connect(configs.DBURL, { useNewUrlParser: true }, (err) => {
   if (err) {
     console.error(err);
