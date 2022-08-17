@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import configs from './configs.js';
 import apiRoutes from './routes/index.js';
 import db from './database/index.js';
+import CallbackData from './database/models/callback_data.js';
 
 db.connect();
 
@@ -35,6 +36,15 @@ app.get('/', (req, res) => {
 
 // api routes
 app.use('/v0', apiRoutes); // we can add checkclient middleware to protect routes
+
+app.post('/test-callback-url', (req, res) => {
+  const Cb_data = new CallbackData({data: req.body, date: Date.now()});
+  
+  Cb_data.save(function(err, result) {
+    if(err) throw err;
+    res.json({ status: 200, result: Cb_data});
+  });
+});
 
 app.use((req, res) => {
   const error = new Error('not found');
