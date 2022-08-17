@@ -38,6 +38,7 @@ app.get('/', (req, res) => {
 app.use('/v0', apiRoutes); // we can add checkclient middleware to protect routes
 
 app.post('/test-callback-url', (req, res) => {
+  console.log( `|New Callback Data: | [ ${Date.now()} ]`);
   const Cb_data = new CallbackData({data: req.body, date: Date.now()});
   
   Cb_data.save(function(err, result) {
